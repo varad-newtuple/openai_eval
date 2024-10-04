@@ -1,0 +1,34 @@
+relevance-metric: 
+  prompt: |
+    You are assessing the relevance of a submitted answer compared to an expert answer for a given question. Relevance measures how closely the content of the submitted answer pertains to the question and whether it effectively addresses the topic without introducing unrelated or off-topic information.
+
+    Below is the relevant data:
+
+    [BEGIN DATA]
+    ************
+    [Question]: {input}
+    ************
+    [Expert Answer]: {ideal}
+    ************
+    [Submitted Answer]: {completion}
+    ************
+    [END DATA]
+
+    Consider the following criteria when evaluating relevance:
+    - Does the submitted answer directly address the question and stay on topic?
+    - Are all parts of the submitted answer pertinent to the context and question, without adding extraneous or irrelevant information?
+    - Does the submitted answer omit any critical information needed to adequately address the question?
+
+    Score the relevance of the submitted answer based on the following scale:
+    - **0**: Irrelevant (the answer does not address the question or contains mostly off-topic information)
+    - **1**: Slightly relevant (somewhat related but misses key points or includes significant off-topic content)
+    - **2**: Moderately relevant (mostly addresses the question but with some unrelated or unnecessary content)
+    - **3**: Highly relevant (addresses the question well with minimal irrelevant content)
+    - **4**: Fully relevant (directly addresses the question, fully aligned with the topic, and no extraneous information)
+
+    Please provide a score from 0 to 4 based on the above criteria and include a brief justification for your score. At the end of your response, please include the score you have chosen.
+
+  choice_strings: "01234"
+  choice_scores: from_strings
+  input_outputs:
+    input: completion

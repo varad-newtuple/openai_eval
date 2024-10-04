@@ -1,0 +1,15 @@
+relevance-metric:
+  id: relevance-metric.dev.v0
+  metrics: [relevance]
+  description: >
+    Eval that scores the relevance between the answers from RAG.
+  disclaimer: >
+    This eval is used to score the relevance between the answers from RAG.
+
+relevance-metric.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: rag_metrics/old_rag_data.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: relevance-metric
+

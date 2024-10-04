@@ -1,0 +1,34 @@
+accuracy_metric:
+  prompt: |-
+    You are assessing the accuracy of a submitted answer compared to an expert answer for a given question. Accuracy measures how factually correct the submitted answer is, based on the information provided in the expert answer. 
+
+    Below is the relevant data:
+
+    [BEGIN DATA]
+    ************
+    [Question]: {input}
+    ************
+    [Expert Answer]: {ideal}
+    ************
+    [Submitted Answer]: {completion}
+    ************
+    [END DATA]
+
+    Consider the following criteria when evaluating accuracy:
+    - Does the submitted answer contain any factual errors?
+    - Does the submitted answer misinterpret or omit key information?
+    - Is the content in the submitted answer aligned with the facts presented in the expert answer?
+
+    Score the accuracy of the submitted answer based on the following scale:
+    - **0**: Inaccurate (contains critical errors or incorrect information)
+    - **1**: Slightly accurate (has critical errors but includes some correct information)
+    - **2**: Partially accurate (covers some of the key facts but with major omissions or errors)
+    - **3**: Mostly accurate (only minor factual variations or errors)
+    - **4**: Accurate (fully aligned with the facts in the expert answer)
+
+    Please provide a score from 0 to 4 based on the above criteria.
+
+  choice_strings: "01234"
+  choice_scores: from_strings
+  input_outputs:
+    input: completion

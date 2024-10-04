@@ -1,0 +1,15 @@
+accuracy-metric:
+  id: accuracy-metric.dev.v0
+  metrics: [accuracy]
+  description: >
+    Eval that scores the answers from RAG.
+  disclaimer: >
+    This eval is used to score the quality of the answers from RAG.
+
+accuracy-metric.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: rag_metrics/old_rag_data.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: accuracy_metric
+

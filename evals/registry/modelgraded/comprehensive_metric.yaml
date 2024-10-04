@@ -1,0 +1,34 @@
+comprehensive-metric:
+  prompt: |-
+    You are assessing the comprehensiveness of a submitted answer compared to an expert answer for a given question. Comprehensiveness measures whether the submitted answer includes all necessary information required to fully understand the context or legal advice provided in the expert answer.
+
+    Below is the relevant data:
+
+    [BEGIN DATA]
+    ************
+    [Question]: {input}
+    ************
+    [Expert Answer]: {ideal}
+    ************
+    [Submitted Answer]: {completion}
+    ************
+    [END DATA]
+
+    Consider the following criteria when evaluating comprehensiveness:
+    - Does the submitted answer cover all critical points and address all aspects of the question?
+    - Are there any key details or information missing that are necessary to understand the context or provide adequate advice?
+    - Is the provided information sufficiently detailed and well-explained to ensure a thorough understanding of the topic?
+
+    Score the comprehensiveness of the submitted answer based on the following scale:
+    - **0%**: No coverage at all (the answer misses all critical points)
+    - **1**: Minimal coverage (the answer addresses very few critical points, with significant gaps in information)
+    - **2**: Moderate coverage (the answer covers some aspects but misses several key details or explanations)
+    - **3**: Good coverage (the answer includes most critical points and details but lacks complete depth or thoroughness)
+    - **4**: Excellent coverage (the answer fully covers all necessary information, with thorough and detailed explanations)
+
+    Please provide a score from 0 to 4 based on the above criteria.
+
+  choice_strings: "01234"
+  choice_scores: from_strings
+  input_outputs:
+    input: completion

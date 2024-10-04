@@ -1,0 +1,15 @@
+similarity-metric:
+  id: similarity-metric.dev.v0
+  metrics: [similarity]
+  description: >
+    Eval that scores the similarity between the answers from RAG.
+  disclaimer: >
+    This eval is used to score the similarity between the answers from RAG.
+
+similarity-metric.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: rag_metrics/old_rag_data.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: similarity-metric
+
