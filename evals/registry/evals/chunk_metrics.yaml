@@ -1,0 +1,15 @@
+chunk-metrics:
+  id: chunk-metrics.dev.v0
+  metrics: [accuracy]
+  description: >
+    Eval that scores RAG chunks from dataset. 
+  disclaimer: >
+    This eval is used to score the similarity between old and new RAG chunks.
+
+chunk-metrics.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: chunk_metrics/chunk_metrics.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: chunk_metrics
+

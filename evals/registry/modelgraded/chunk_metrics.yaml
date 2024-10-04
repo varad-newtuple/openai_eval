@@ -1,0 +1,31 @@
+chunk_metrics:
+  prompt: |-
+    You are comparing a new RAG (Retrieval-Augmented Generation) chunk to an old RAG chunk for a given question. Below is the information provided:
+    
+    [BEGIN DATA]
+    ************
+    [Question]: {input}
+    ************
+    [Old RAG Chunk]: {old_chunk}
+    ************
+    [New RAG Chunk]: {new_chunk}
+    ************
+    [END DATA]
+    
+    Carefully compare the **content** and **correctness** of the new RAG chunk against the old RAG chunk. Focus on whether the information in both chunks is consistent, accurate, and relevant to the question. 
+    - **Do not consider** any differences in whitespace, style, or formatting (e.g., column names).
+    - The new RAG chunk can be similar or different in its content or correctness.
+
+    Based on your analysis, choose one of the following responses:
+      - **"Similar"**: The new RAG chunk and the old RAG chunk are meaningfully similar in content and correctness.
+      - **"Different"**: The new RAG chunk and the old RAG chunk are meaningfully different in content or correctness.
+    
+    Select only one option.
+  choice_strings:
+    - "Similar"
+    - "Different"
+  choice_scores:
+    "Similar": 1.0
+    "Different": 0.0
+  input_outputs:
+    input: completion

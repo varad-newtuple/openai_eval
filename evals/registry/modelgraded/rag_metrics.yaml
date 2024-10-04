@@ -1,0 +1,60 @@
+rag_metrics:
+  prompt: |-
+    You are comparing a submitted AI-generated answer to an expert answer for a given question. Your task is to evaluate the submission based on several metrics. Below is the provided information:
+
+    [BEGIN DATA]
+    ************
+    [Question]: {input}
+    ************
+    [Expert Answer]: {ideal}
+    ************
+    [Submitted Answer]: {completion}
+    ************
+    [END DATA]
+
+    Please focus on the following evaluation metrics:
+
+    1. **Similarity**: Measures how closely the submitted answer matches the content and structure of the expert answer.
+       - Score: **0** (no similarity) to **1** (close to exact match).
+
+    2. **Accuracy**: Evaluates whether the information in the submitted answer is factually correct and aligns with the facts mentioned in the expert answer.
+       - Score: 
+         - **0**: Inaccurate (contains critical errors and incorrect information)
+         - **1**: Accurate (fully aligned with facts)
+
+    3. **Relevance**: Assesses how relevant the content of the submitted answer is to the question or topic outlined in the expert answer.
+       - Score: **0** (irrelevant) to **1** (fully relevant).
+
+    4. **Clarity**: Measures the clarity and comprehensibility of the language and expression used in the submission. Looks for repetition or unclear phrasing.
+       - Score: 
+         - **0**: Very unclear and confusing
+         - **1**: Very clear and easy to understand
+
+    5. **Comprehensiveness**: Evaluates whether the submitted answer includes all necessary information needed to fully address the question and context of the expert answer.
+       - Score: 
+         - **0**: No coverage at all
+         - **1**: Excellent coverage
+
+    Please provide a score between **0 and 1** for each metric; only integer value, considering the provided descriptions. Then, calculate a **final score** between **0 and 5**. Each metric is equally important, and each carries 1 point.
+
+    Based on your assessment, select an overall performance rating:
+      - **Worst**: 0
+      - **Bad**: 1
+      - **OK**: 2
+      - **Good**: 3
+      - **Excellent**: 4
+
+  choice_strings:
+    - "Worst"
+    - "Bad"
+    - "OK"
+    - "Good"
+    - "Excellent"
+  choice_scores:
+    "Worst": 0
+    "Bad": 1
+    "OK": 2
+    "Good": 3
+    "Excellent": 4
+  input_outputs:
+    input: completion
